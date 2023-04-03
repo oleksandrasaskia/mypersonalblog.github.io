@@ -1,6 +1,6 @@
 AUTHOR = 'Oleksandra Sopova'
 SITENAME = 'Oleksandra Sopova'
-SITEURL = ''
+SITEURL = 'https://oleksandrasaskia.github.io/'
 
 PATH = 'content'
 

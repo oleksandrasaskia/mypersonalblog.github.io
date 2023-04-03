@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}{{ page.title|striptags }}{% endblock %}
+{% block content %}
+<div class="page-container">
+    <div class="article-header-container">
+        <div class="background-image-container">
+
+            {# title with big background image #}
+            {% if page.image %}
+            <div class="background-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url({{ page.image }});">
+                <img src="{{ page.image }}" alt="{{ page.title|striptags }}">
+                <div class="title">
+                <h1>
+                    {{ page.title }}
+                </h1>
+                {% if page.subtitle %}
+                <h2>
+                    {{ page.subtitle }}
+                </h2>
+                {% endif %}
+                </div>
+            </div>
+            {% else %}
+            <div class="background-image-small">
+                {% if page.smallimage %}
+                <img src="{{ page.smallimage }}" alt="{{ page.title|striptags }}">
+                {% endif %}
+                <div class="title-container">
+                    <h1>{{ page.title }}</h1>
+                    {% if page.subtitle %}
+                    <h4>{{ page.subtitle }}</h4>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="entry-content">
+        {{ page.content }}
+    </div>
+    <div class="main-container">
+        <div class="pure-g">
+            <div class="pure-u-1 pure-u-lg-2-3">
+
+                <footer class="index-footer">
+
+                    <!--<a href="{{ SITEURL }}/" title="{{ SITENAME|striptags }}">{{ SITENAME }}</a>-->
+                    {% for title, link in MENUITEMS %}
+                    <a href="{{ link }}">{{ title }}</a></li>
+                    {% endfor %}
+                    {% if DISPLAY_PAGES_ON_MENU %}
+                    {% for p in PAGES %}
+                    <a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a>
+                    {% endfor %}
+                    {% endif %}
+                    {% if DISPLAY_CATEGORIES_ON_MENU %}
+                    {% for cat, null in categories %}
+                    <a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a>
+                    {% endfor %}
+                    {% endif %}
+                    {% for title, link in LINKS %}
+                    <a href="{{ link }}">{{ title }}</a>
+                    {% endfor %}
+
+                </footer>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}
